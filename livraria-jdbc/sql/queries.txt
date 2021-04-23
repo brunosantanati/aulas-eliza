@@ -1,0 +1,10 @@
+CREATE DATABASE livraria;
+
+USE livraria;
+
+CREATE TABLE livros (
+	titulo VARCHAR(100) NOT NULL,
+	autor VARCHAR(100) NOT NULL
+);
+
+SELECT * FROM livros;
