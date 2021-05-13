@@ -2,6 +2,7 @@ package br.com.bruno.santana;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,7 +30,7 @@ public class JDBCExampleRefactored {
 
 			select(stmt);
 			
-			insert(stmt);
+			insert(conn);
 			select(stmt);
 			
 			update(stmt);
@@ -58,10 +59,13 @@ public class JDBCExampleRefactored {
 		System.out.println("Fim!");
 	}
 	
-	public static void insert(Statement stmt) throws SQLException {
+	public static void insert(Connection conn) throws SQLException {
 		System.out.println("insert...\n");
-		String sql = "INSERT INTO livros(titulo, autor) VALUES ('Felicidade Verdadeira', 'Heber Campos Jr.')";
-		stmt.executeUpdate(sql);
+		String sql = "INSERT INTO livros(titulo, autor) VALUES (?,?);";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "Felicidade Verdadeira");
+		ps.setString(2, "Heber Campos Jr.");
+		ps.executeUpdate();
 	}
 	
 	public static void update(Statement stmt) throws SQLException {
