@@ -48,8 +48,9 @@ public class JDBCExampleRefactored {
 				System.out.println("3-Exclusão");
 				System.out.println("4-Consulta");
 				System.out.println("5-Exit");
-				//opcao = scanner.nextInt();
-				opcao = Integer.parseInt(scanner.nextLine());
+				opcao = scanner.nextInt();
+				scanner.nextLine(); //explicação do problema de não ter essa linha: https://stackoverflow.com/questions/13102045/scanner-is-skipping-nextline-after-using-next-or-nextfoo
+				//opcao = Integer.parseInt(scanner.nextLine());
 				switch (opcao) {
 				case 1:
 					insert(conn);
