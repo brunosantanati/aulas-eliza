@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class JDBCExample {
+public class JDBCPrimeiroExemplo {
 
 	// JDBC driver name and database URL
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -14,7 +14,7 @@ public class JDBCExample {
 
 	// Database credentials
 	static final String USER = "root";
-	static final String PASS = "01061966";
+	static final String PASS = "root1234";
 
 	public static void main(String[] args) {
 		//insert();

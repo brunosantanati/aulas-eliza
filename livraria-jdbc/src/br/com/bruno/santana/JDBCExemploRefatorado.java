@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class JDBCExampleRefactored {
+public class JDBCExemploRefatorado {
 
 	// Dados do Banco
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
