@@ -2,6 +2,7 @@ package br.com.bruno.santana;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,6 +40,13 @@ public class SQLInjectionExemplo {
 			selectComSqlInjection(stmt, "Rodrigo Turini';delete from livros; #");
 			select(stmt);
 			
+			insert(stmt, "Finalmente Vivos", "John Piper");
+			
+			selectComPreparedStatement(conn, "John Piper");
+			select(stmt);
+			
+			selectComPreparedStatement(conn, "John Piper';delete from livros; #");
+			select(stmt);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -80,7 +88,19 @@ public class SQLInjectionExemplo {
 	public static void selectComSqlInjection(Statement stmt, String autor) throws SQLException {
 		System.out.println("select com vulnerabilidade...\n");
 		String sql = "SELECT * from livros where autor = '" + autor + "'";
-		stmt.executeQuery(sql);
+		ResultSet rs = stmt.executeQuery(sql);
+		if(rs.next())
+			System.out.println("Primeiro registro: " + rs.getString("titulo") + "\n");
+	}
+	
+	public static void selectComPreparedStatement(Connection conn, String autor) throws SQLException {
+		System.out.println("select sem vulnerabilidade...\n");
+		String sql = "SELECT * from livros where autor = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, autor);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next())
+			System.out.println("Primeiro registro: " + rs.getString("titulo") + "\n");
 	}
 	
 }
