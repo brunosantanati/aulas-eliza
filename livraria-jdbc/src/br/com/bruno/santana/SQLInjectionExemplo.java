@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 // Mais exemplos em: https://riptutorial.com/jdbc/example/28671/statement---sql-injection-evil
 public class SQLInjectionExemplo {
@@ -39,6 +40,12 @@ public class SQLInjectionExemplo {
 			
 			selectComSqlInjection(stmt, "Rodrigo Turini';delete from livros; #");
 			select(stmt);
+			
+			Scanner s = new Scanner(System.in);
+			System.out.println("Digite o autor:");
+			String autor = s.nextLine();
+			selectComSqlInjection(stmt, autor);
+			s.close();
 			
 			insert(stmt, "Finalmente Vivos", "John Piper");
 			
