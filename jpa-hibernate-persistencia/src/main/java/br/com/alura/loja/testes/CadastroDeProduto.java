@@ -11,6 +11,8 @@ import br.com.alura.loja.modelo.Categoria;
 import br.com.alura.loja.modelo.Produto;
 import br.com.alura.loja.util.JPAUtil;
 
+// Código do curso: https://cursos.alura.com.br/course/persistencia-jpa-introducao-hibernate/
+
 public class CadastroDeProduto {
 	
 	public static void main(String[] args) {
