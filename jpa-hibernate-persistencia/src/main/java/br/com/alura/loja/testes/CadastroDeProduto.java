@@ -28,6 +28,8 @@ public class CadastroDeProduto {
 	
 		BigDecimal precoDoProduto = produtoDao.buscarPrecoDoProdutoComNome("Xiaomi Redmi");
 		System.out.println("Preco do Produto: " +precoDoProduto);
+		
+		testando();
 	}
 
 	private static void cadastrarProduto() {
@@ -45,6 +47,40 @@ public class CadastroDeProduto {
 		
 		em.getTransaction().commit();
 		em.close();
+	}
+	
+	private static void testando() {
+		
+		EntityManager em = JPAUtil.getEntityManager();
+		
+		CategoriaDao categoriaDao = new CategoriaDao(em);
+		Categoria celulares = categoriaDao.buscarPorId(1L);
+		
+		ProdutoDao produtoDao = new ProdutoDao(em);
+		
+		Produto celular = new Produto("Galaxy S10", "Muito legal", new BigDecimal("2000"), celulares);
+		
+		em.getTransaction().begin();
+		
+		produtoDao.cadastrar(celular);
+		
+		//celular.setDescricao("Muito caro"); //isso faz alterar o produto porque ele está managed
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		//######################################
+		
+		em = JPAUtil.getEntityManager();
+		produtoDao = new ProdutoDao(em);
+		em.getTransaction().begin();
+		
+		celular.setDescricao("Muito caro");
+		produtoDao.atualizar(celular); //aqui como o objeto está detached, usamos o merge (o atualizar chama o merge)
+		
+		em.getTransaction().commit();
+		em.close();
+		
 	}
 
 }
