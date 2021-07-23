@@ -7,9 +7,12 @@ import javax.persistence.EntityManager;
 
 import br.com.alura.loja.dao.AlunoDao;
 import br.com.alura.loja.dao.MateriaDao;
+import br.com.alura.loja.dao.NotaDao;
 import br.com.alura.loja.dao.SerieDao;
 import br.com.alura.loja.modelo.Aluno;
 import br.com.alura.loja.modelo.Materia;
+import br.com.alura.loja.modelo.Nota;
+import br.com.alura.loja.modelo.NotaPK;
 import br.com.alura.loja.modelo.Serie;
 import br.com.alura.loja.util.JPAUtil;
 
@@ -103,6 +106,15 @@ public class CadastroDeAluno {
 		
 		alunoDao.cadastrar(marcos);
 		alunoDao.cadastrar(lucas);
+		
+		// Cadastrar notas
+		Nota nota1 = new Nota(8.0F, 9.0F, 10.0F, 7.5F);
+		nota1.setAluno(marcos);
+		nota1.setPk(new NotaPK(marcos.getId()));
+		
+		NotaDao notaDao = new NotaDao(em);
+		
+		notaDao.cadastrar(nota1);
 		
 		em.getTransaction().commit();
 		em.close();
