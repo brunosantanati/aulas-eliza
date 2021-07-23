@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +21,9 @@ public class Materia {
 	
 	@ManyToMany(mappedBy="materias")
 	List<Serie> series;
+	
+	@OneToMany(mappedBy = "materia")
+	private List<Nota> notas;
 
 	public Materia() {
 	}
@@ -50,6 +54,14 @@ public class Materia {
 
 	public void setSeries(List<Serie> series) {
 		this.series = series;
+	}
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
 	}
 
 	@Override

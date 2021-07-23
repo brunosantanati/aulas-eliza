@@ -110,11 +110,20 @@ public class CadastroDeAluno {
 		// Cadastrar notas
 		Nota nota1 = new Nota(8.0F, 9.0F, 10.0F, 7.5F);
 		nota1.setAluno(marcos);
-		nota1.setPk(new NotaPK(marcos.getId()));
+		nota1.setSerie(segundoAnoA);
+		nota1.setMateria(portugues);
+		nota1.setPk(new NotaPK(marcos.getId(), segundoAnoA.getId(), portugues.getId()));
+		
+		Nota nota2 = new Nota(10.0F, 9.5F, 7.0F, 6.0F);
+		nota2.setAluno(marcos);
+		nota2.setSerie(segundoAnoA);
+		nota2.setMateria(matematica);
+		nota2.setPk(new NotaPK(marcos.getId(), segundoAnoA.getId(), matematica.getId()));
 		
 		NotaDao notaDao = new NotaDao(em);
 		
 		notaDao.cadastrar(nota1);
+		notaDao.cadastrar(nota2);
 		
 		em.getTransaction().commit();
 		em.close();

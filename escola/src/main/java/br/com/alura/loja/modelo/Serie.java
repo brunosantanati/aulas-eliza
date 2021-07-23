@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +28,9 @@ public class Serie {
 	@ManyToMany
 	@JoinTable(name="serie_materia", joinColumns={@JoinColumn(name="serie_id")}, inverseJoinColumns={@JoinColumn(name="materia_id")})
 	List<Materia> materias;
+	
+	@OneToMany(mappedBy = "serie")
+	private List<Nota> notas;
 	
 	public Serie() {
 	}
@@ -65,6 +69,14 @@ public class Serie {
 
 	public void setMaterias(List<Materia> materias) {
 		this.materias = materias;
+	}
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
 	}
 
 	@Override

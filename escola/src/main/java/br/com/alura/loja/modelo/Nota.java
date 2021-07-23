@@ -18,9 +18,18 @@ public class Nota {
 	private float nota3Bimestre;
 	private float nota4Bimestre;
 	
+	//Vide especificação JPA 2.1, seção 2.4.1.
 	@MapsId("alunoPK") // maps alunoPK attribute of embedded id
 	@ManyToOne
 	private Aluno aluno;
+	
+	@MapsId("seriePK") // maps seriePK attribute of embedded id
+	@ManyToOne
+	private Serie serie;
+	
+	@MapsId("materiaPK") // maps materiaPK attribute of embedded id
+	@ManyToOne
+	private Materia materia;
 	
 	public Nota() {
 	}
@@ -79,6 +88,22 @@ public class Nota {
 
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
+	}
+
+	public Serie getSerie() {
+		return serie;
+	}
+
+	public void setSerie(Serie serie) {
+		this.serie = serie;
+	}
+
+	public Materia getMateria() {
+		return materia;
+	}
+
+	public void setMateria(Materia materia) {
+		this.materia = materia;
 	}
 
 	@Override
