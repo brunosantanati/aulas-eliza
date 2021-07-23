@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -18,32 +20,35 @@ public class Serie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private Boolean atual;
 	
 	@ManyToMany(mappedBy="series", fetch = FetchType.EAGER)
 	List<Aluno> alunos;
 	
+	@ManyToMany
+	@JoinTable(name="serie_materia", joinColumns={@JoinColumn(name="serie_id")}, inverseJoinColumns={@JoinColumn(name="materia_id")})
+	List<Materia> materias;
+	
 	public Serie() {
 	}
 	
-	public Serie(String nome, Boolean atual) {
+	public Serie(String nome) {
 		this.nome = nome;
-		this.atual = atual;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Boolean isAtual() {
-		return atual;
-	}
-
-	public void setAtual(Boolean atual) {
-		this.atual = atual;
 	}
 
 	public List<Aluno> getAlunos() {
@@ -54,9 +59,17 @@ public class Serie {
 		this.alunos = alunos;
 	}
 
+	public List<Materia> getMaterias() {
+		return materias;
+	}
+
+	public void setMaterias(List<Materia> materias) {
+		this.materias = materias;
+	}
+
 	@Override
 	public String toString() {
-		return "Serie [id=" + id + ", nome=" + nome + ", atual=" + atual + "]";
+		return "Serie [id=" + id + ", nome=" + nome + "]";
 	}
 
 }

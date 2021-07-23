@@ -2,7 +2,6 @@ package br.com.alura.loja.modelo;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,16 +19,18 @@ public class Aluno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	private String serieAtual;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST})
+	@ManyToMany
 	@JoinTable(name="aluno_serie", joinColumns={@JoinColumn(name="aluno_id")}, inverseJoinColumns={@JoinColumn(name="serie_id")})
 	private List<Serie> series;
 	
 	public Aluno() {
 	}
 	
-	public Aluno(String nome) {
+	public Aluno(String nome, String serieAtual) {
 		this.nome = nome;
+		this.serieAtual = serieAtual;
 	}
 
 	public Long getId() {
@@ -47,6 +48,14 @@ public class Aluno {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getSerieAtual() {
+		return serieAtual;
+	}
+
+	public void setSerieAtual(String serieAtual) {
+		this.serieAtual = serieAtual;
+	}
 
 	public List<Serie> getSeries() {
 		return series;
@@ -58,7 +67,7 @@ public class Aluno {
 
 	@Override
 	public String toString() {
-		return "Aluno [id=" + id + ", nome=" + nome + ", series=" + series + "]";
+		return "Aluno [id=" + id + ", nome=" + nome + ", serieAtual=" + serieAtual + "]";
 	}
 
 }
