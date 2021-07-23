@@ -34,8 +34,9 @@ public class CadastroDeAluno {
 		
 		System.out.println("\n######## Serie Atual ###########");
 		Optional<Serie> serieOptional = aluno.getSeries().stream().filter(s -> s.getNome().equals(aluno.getSerieAtual())).findFirst();
+		Serie serieAtual = null;
 		if(serieOptional.isPresent()) {
-			Serie serieAtual = serieOptional.get();
+			serieAtual = serieOptional.get();
 			System.out.println(serieAtual.getId());
 			System.out.println(serieAtual.getNome());
 			System.out.println("\n######## Materias da Serie Atual ###########");
@@ -48,6 +49,11 @@ public class CadastroDeAluno {
 		Serie serie = serieDao.buscarPorId(4L);
 		System.out.println(serie);
 		serie.getAlunos().forEach(System.out::println);
+		
+		System.out.println("\n######## Pegar nota ###########");
+		NotaDao notaDao = new NotaDao(em);
+		Nota nota = notaDao.buscarPorIdComposto(aluno.getId(), serieAtual.getId(), serieAtual.getMaterias().get(0).getId());
+		System.out.println("Nota do aluno " + aluno.getNome() + " na materia " + serieAtual.getMaterias().get(0).getNome() + ": " + nota);
 		
 		em.close();
 	}

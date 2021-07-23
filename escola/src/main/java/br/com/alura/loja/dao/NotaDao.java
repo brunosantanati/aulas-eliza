@@ -25,8 +25,13 @@ public class NotaDao {
 		this.em.remove(nota);
 	}
 	
-	public Nota buscarPorId(Long id) {
-		return em.find(Nota.class, id);
+	public Nota buscarPorIdComposto(long idAluno, long idSerie, long idMateria) {
+		String jpql = "SELECT n FROM Nota n WHERE n.aluno.id = :idAluno AND n.serie.id = :idSerie AND n.materia.id = :idMateria";
+		return em.createQuery(jpql, Nota.class)
+				.setParameter("idAluno", idAluno)
+				.setParameter("idSerie", idSerie)
+				.setParameter("idMateria", idMateria)
+				.getSingleResult();
 	}
 
 }
