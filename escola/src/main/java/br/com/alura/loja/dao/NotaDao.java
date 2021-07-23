@@ -1,6 +1,9 @@
 package br.com.alura.loja.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.com.alura.loja.modelo.Nota;
 
@@ -32,6 +35,25 @@ public class NotaDao {
 				.setParameter("idSerie", idSerie)
 				.setParameter("idMateria", idMateria)
 				.getSingleResult();
+	}
+	
+	public Nota buscarPorIdCompostoNativeQuery(long idAluno, long idSerie, long idMateria) {
+		String sql = "SELECT * FROM notas WHERE aluno_id = :idAluno AND serie_id = :idSerie AND materia_id = :idMateria";
+		Query query = em.createNativeQuery(sql)
+			.setParameter("idAluno", idAluno)
+			.setParameter("idSerie", idSerie)
+			.setParameter("idMateria", idMateria);
+		
+		@SuppressWarnings("unchecked")
+		List<Object[]> resultList = query.getResultList();
+		
+		if(resultList.size() > 0) {
+			Object[] array = resultList.get(0);
+			Nota nota = new Nota((float)array[0], (float)array[1], (float)array[2], (float)array[3]);
+			return nota;
+		}else {
+			throw new RuntimeException("Nota não encontrada");
+		}
 	}
 
 }

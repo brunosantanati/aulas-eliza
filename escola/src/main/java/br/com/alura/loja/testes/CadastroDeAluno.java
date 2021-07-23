@@ -135,6 +135,10 @@ public class CadastroDeAluno {
 		Nota nota = notaDao.buscarPorIdComposto(aluno.getId(), serieAtual.getId(), serieAtual.getMaterias().get(0).getId());
 		System.out.println("Nota do aluno " + aluno.getNome() + " na materia " + serieAtual.getMaterias().get(0).getNome() + ": " + nota);
 		
+		System.out.println("\n######## Pegar nota com native query ###########");
+		Nota nota1 = notaDao.buscarPorIdCompostoNativeQuery(aluno.getId(), serieAtual.getId(), serieAtual.getMaterias().get(0).getId());
+		System.out.println("Nota do aluno " + aluno.getNome() + " na materia " + serieAtual.getMaterias().get(0).getNome() + ": " + nota1);
+		
 		em.close();
 	}
 	
