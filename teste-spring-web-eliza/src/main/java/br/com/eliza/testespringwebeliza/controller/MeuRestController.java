@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.eliza.testespringwebeliza.model.Livro;
 import br.com.eliza.testespringwebeliza.model.Mensagem;
 import br.com.eliza.testespringwebeliza.repository.LivroRepository;
+import br.com.eliza.testespringwebeliza.repository.LivroRepository2;
 
 @RestController
 public class MeuRestController {
 	
 	@Autowired
 	LivroRepository livroRepository;
+	
+	@Autowired
+	LivroRepository2 livroRepository2;
 
 	@GetMapping("/livros/{id}")
 	public Livro consultar(@PathVariable Long id) {
@@ -26,7 +30,8 @@ public class MeuRestController {
 	
 	@PostMapping("/livros")
 	public Mensagem salvar(@RequestBody Livro livro) {
-		livroRepository.salvar(livro);
+		//livroRepository.salvar(livro);
+		livroRepository2.save(livro);
 		return new Mensagem("request.success", "Livro salvo com sucesso!");
 	}
 	

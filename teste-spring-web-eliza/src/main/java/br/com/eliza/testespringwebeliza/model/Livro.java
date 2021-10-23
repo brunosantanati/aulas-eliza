@@ -1,10 +1,23 @@
 package br.com.eliza.testespringwebeliza.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Livro {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String autor;
+	
+	@Deprecated
+	public Livro() {
+		//somente para o Hibernate
+	}
 	
 	public Livro(Long id, String nome, String autor) {
 		super();
