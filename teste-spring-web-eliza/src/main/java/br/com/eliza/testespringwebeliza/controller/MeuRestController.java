@@ -43,6 +43,16 @@ public class MeuRestController {
 		return livroRepository2.findByAutor(autor);
 	}
 	
+	@GetMapping("/livros/nome/{nome}")
+	public List<Livro> consultarPorNome(@PathVariable String nome) {
+		return livroRepository2.findByNomeDoLivro(nome);
+	}
+	
+	@GetMapping("/livros/todos")
+	public List<Livro> todos() {
+		return livroRepository2.findAllLivros();
+	}	
+	
 	@PostMapping("/livros")
 	public Mensagem salvar(@RequestBody Livro livro) {
 		//livroRepository.salvar(livro);
