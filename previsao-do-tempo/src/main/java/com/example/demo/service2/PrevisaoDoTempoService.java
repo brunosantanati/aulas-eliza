@@ -47,7 +47,7 @@ public class PrevisaoDoTempoService {
 		
 		String urlServicoGeolocalizacao = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + CodificadorDeUrl.codificar(endereco) + ".json?access_token=pk.eyJ1IjoiYnJ1bm9zYW50YW5hdGkiLCJhIjoiY2s4ODFmMHB4MDBkeDNnbXNxOHhqYjBjaiJ9.mj3Dg_SMDKGbiOJ2oyT4Cw&limit=1";
 		
-		HttpResponse<String> response = fazerChamadaHttp(urlServicoGeolocalizacao);
+		HttpResponse<String> response = fazerChamadaHttp(urlServicoGeolocalizacao); //trocar essa chama de método local, chamando o método da classe nova, exemplo: RequisicaoHttpService r = new RequisicaoHttpService(); r.fazerChamadaHttp("");
 
         return objectMapper.readValue(response.body(), GeolocalizacaoDados.class);
 
@@ -60,11 +60,13 @@ public class PrevisaoDoTempoService {
 		
 		String urlServicoPrevisaoDoTempo = "https://api.darksky.net/forecast/70ff7c58595674b62c6cb99468310588/" + latitude + "," + longitude + "?units=si&lang=pt";
 		
-		HttpResponse<String> response = fazerChamadaHttp(urlServicoPrevisaoDoTempo);
+		HttpResponse<String> response = fazerChamadaHttp(urlServicoPrevisaoDoTempo); //trocar essa chama de método local, chamando o método da classe nova, exemplo: RequisicaoHttpService r = new RequisicaoHttpService(); r.fazerChamadaHttp("");
 
         return objectMapper.readValue(response.body(), PrevisaoDoTempoDados.class);
 	}
 
+	
+	//TODO: separar esse método em uma classe a parte chamada RequisicaoHttpService
 	private HttpResponse<String> fazerChamadaHttp(String url)
 			throws IOException, InterruptedException {
 		
@@ -73,7 +75,7 @@ public class PrevisaoDoTempoService {
         HttpRequest request = HttpRequest.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
                 .uri(URI.create(url))
-                .headers("Accept-Enconding", "gzip, deflate")
+                .headers("Accept", "application/json")
                 .build();
         
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
