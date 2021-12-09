@@ -9,6 +9,20 @@ public class PrevisaoDoTempo {
 	private String localizacao;
 	private String endereco;
 	
+	public PrevisaoDoTempo() {
+	}
+
+	public PrevisaoDoTempo(String resumo, String temperaturaAtual, String chancesDeChover, String humidade,
+			String localizacao, String endereco) {
+		super();
+		this.resumo = resumo;
+		this.temperaturaAtual = temperaturaAtual;
+		this.chancesDeChover = chancesDeChover;
+		this.humidade = humidade;
+		this.localizacao = localizacao;
+		this.endereco = endereco;
+	}
+	
 	public String getResumo() {
 		return resumo;
 	}

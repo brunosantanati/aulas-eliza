@@ -4,17 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.net.URISyntaxException;
-
-import org.apache.http.client.utils.URIBuilder;
-
 import com.example.demo.dto.GeolocalizacaoDados;
 import com.example.demo.dto.HttpRequestDados;
 import com.example.demo.dto.HttpResponseDados;
-import com.example.demo.dto.PrevisaoDoTempoDados;
 import com.example.demo.dto.PrevisaoDoTempo;
+import com.example.demo.dto.PrevisaoDoTempoDados;
+import com.example.demo.utils.CodificadorDeUrl;
 
-@Service
+@Service("PrevisaoDoTempoService1")
 public class PrevisaoDoTempoService {
 	
 	@Autowired
@@ -36,44 +33,25 @@ public class PrevisaoDoTempoService {
 		float temperaturaAtual = previsaoDoTempoDados.getCurrently().getTemperature();
 		float chancesDeChover = previsaoDoTempoDados.getCurrently().getPrecipProbability();
 		
-		PrevisaoDoTempo PrevisaoDoTempo = new PrevisaoDoTempo();
-		PrevisaoDoTempo.setResumo(resumo);
-		PrevisaoDoTempo.setTemperaturaAtual("Temperatura Atual: " + temperaturaAtual);
-		PrevisaoDoTempo.setChancesDeChover("Existe " + chancesDeChover + " chances de chover");
-		PrevisaoDoTempo.setHumidade("Humidade: " + humidade);
-		PrevisaoDoTempo.setLocalizacao(localizacao);
-		PrevisaoDoTempo.setEndereco(endereco);
+		PrevisaoDoTempo previsaoDoTempo = new PrevisaoDoTempo();
+		previsaoDoTempo.setResumo(resumo);
+		previsaoDoTempo.setTemperaturaAtual("Temperatura Atual: " + temperaturaAtual);
+		previsaoDoTempo.setChancesDeChover("Existe " + chancesDeChover + " chances de chover");
+		previsaoDoTempo.setHumidade("Humidade: " + humidade);
+		previsaoDoTempo.setLocalizacao(localizacao);
+		previsaoDoTempo.setEndereco(endereco);
 		
-		return PrevisaoDoTempo;		
+		return previsaoDoTempo;		
 	}
 	
 	private GeolocalizacaoDados consumirApiDeGeolocalizacao(String endereco) {
-		String urlServicoGeolocalizacao = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + codificarTexto(endereco) + ".json?access_token=pk.eyJ1IjoiYnJ1bm9zYW50YW5hdGkiLCJhIjoiY2s4ODFmMHB4MDBkeDNnbXNxOHhqYjBjaiJ9.mj3Dg_SMDKGbiOJ2oyT4Cw&limit=1";
+		String urlServicoGeolocalizacao = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + CodificadorDeUrl.codificar(endereco) + ".json?access_token=pk.eyJ1IjoiYnJ1bm9zYW50YW5hdGkiLCJhIjoiY2s4ODFmMHB4MDBkeDNnbXNxOHhqYjBjaiJ9.mj3Dg_SMDKGbiOJ2oyT4Cw&limit=1";
 		
 		HttpResponseDados dadosRespostaGeo = httpRequestGeolocalizacaoService.executarRequest(urlServicoGeolocalizacao, new HttpRequestDados());
 		
 		GeolocalizacaoDados geolocalizacaoDados = (GeolocalizacaoDados) dadosRespostaGeo.getItem("geolocalizacaoDados");
 		
 		return geolocalizacaoDados;
-	}
-	
-	private String codificarTexto(String texto) {
-		
-		try {
-			
-			String textoCodificado = new URIBuilder()
-					  .setParameter("i", texto)
-					  .build()
-					  .getRawQuery()
-					  .substring(2);
-			
-			return textoCodificado;
-			
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		
-		return texto;
 	}
 	
 	private PrevisaoDoTempoDados consumirApiPrevisaoDoTempo(GeolocalizacaoDados geolocalizacaoDados) {
