@@ -1,9 +1,11 @@
-package me.brunosantana;
+package me.brunosantana.matematica;
+
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.mockito.Mockito.*;
 
 public class ExecutorDeOperacoesMatematicasTest {
 

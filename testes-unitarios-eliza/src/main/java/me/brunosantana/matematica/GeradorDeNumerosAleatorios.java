@@ -1,4 +1,4 @@
-package me.brunosantana;
+package me.brunosantana.matematica;
 
 public class GeradorDeNumerosAleatorios {
 	
