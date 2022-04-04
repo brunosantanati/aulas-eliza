@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.bruno.dto.ResultadoDaSoma;
 import br.com.bruno.service.ExecutorDeOperacoesMatematicas;
 
 @RestController
@@ -21,9 +22,9 @@ public class MatematicaController {
 	}
 	
 	@GetMapping("somar")
-	public ResponseEntity<Double> somar(){
+	public ResponseEntity<ResultadoDaSoma> somar(){
 		double resultado = executor.somarNumerosAleatorios(1, 3);
-		return ResponseEntity.ok(resultado);
+		return ResponseEntity.ok(new ResultadoDaSoma(resultado));
 	}
 
 }
