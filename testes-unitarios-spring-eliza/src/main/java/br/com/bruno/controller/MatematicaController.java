@@ -16,9 +16,9 @@ public class MatematicaController {
 	ExecutorDeOperacoesMatematicas executor;
 	
 	@GetMapping("somar/{numero1}/{numero2}")
-	public ResponseEntity<Double> somar(@PathVariable double numero1, @PathVariable double numero2){
+	public ResponseEntity<ResultadoDaSoma> somar(@PathVariable double numero1, @PathVariable double numero2){
 		double resultado = executor.somar(numero1, numero2);
-		return ResponseEntity.ok(resultado);
+		return ResponseEntity.ok(new ResultadoDaSoma(resultado));
 	}
 	
 	@GetMapping("somar")
