@@ -2,9 +2,7 @@ package br.com.bruno.service;
 
 import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -34,6 +32,16 @@ public class ExecutorDeOperacoesMatematicasTest {
 		
 		Assert.assertEquals(resultadoEsperado, resultadoDaSoma, 0.01);
 		verify(gerador, times(2)).gerarNumero(anyDouble(), anyDouble());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveriaLancarIllegalArgumentExceptionQuandoMaxEhMaiorQue1000() {
+		
+		doThrow(new IllegalArgumentException("Numero nao pode ser maior que 1000")).when(gerador).gerarNumero(anyDouble(), anyDouble());
+		
+		executor.somarNumerosAleatorios(1.0, 1001.0);
+
+		verify(gerador, times(1)).gerarNumero(anyDouble(), anyDouble());
 	}
 	
 	@Test(expected=ArithmeticException.class)
