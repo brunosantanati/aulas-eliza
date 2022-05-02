@@ -2,7 +2,9 @@ package br.com.bruno.service;
 
 import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,6 +34,11 @@ public class ExecutorDeOperacoesMatematicasTest {
 		
 		Assert.assertEquals(resultadoEsperado, resultadoDaSoma, 0.01);
 		verify(gerador, times(2)).gerarNumero(anyDouble(), anyDouble());
+	}
+	
+	@Test(expected=ArithmeticException.class)
+	public void deveriaLancarArithmeticException() {
+		executor.dividir(10, 0);
 	}
 	
 	@Test
