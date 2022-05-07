@@ -35,6 +35,16 @@ public class ExecutorDeOperacoesMatematicasTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void deveriaLancarIllegalArgumentExceptionQuandoMinEMaxSaoMaioresQue1000() {
+		
+		GeradorDeNumerosAleatorios gerador = new GeradorDeNumerosAleatorios();
+		ExecutorDeOperacoesMatematicas executor = new ExecutorDeOperacoesMatematicas();
+		executor.setGerador(gerador);
+		
+		executor.somarNumerosAleatorios(1001.0, 1050.0);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void deveriaLancarIllegalArgumentExceptionQuandoMaxEhMaiorQue1000() {
 		
 		doThrow(new IllegalArgumentException("Numero nao pode ser maior que 1000")).when(gerador).gerarNumero(anyDouble(), anyDouble());
@@ -42,6 +52,11 @@ public class ExecutorDeOperacoesMatematicasTest {
 		executor.somarNumerosAleatorios(1.0, 1001.0);
 
 		verify(gerador, times(1)).gerarNumero(anyDouble(), anyDouble());
+	}
+	
+	public void deveriaDividirCorretamente() {
+		int resultadoDaDivisao = executor.dividir(10, 5);
+		Assert.assertEquals(2, resultadoDaDivisao);
 	}
 	
 	@Test(expected=ArithmeticException.class)

@@ -25,5 +25,9 @@ public class ExecutorDeOperacoesMatematicas {
 		int maior = matematica.max(a, b);
 		System.out.println("########### maior: " + maior + " #############");
 	}
+
+	public void setGerador(GeradorDeNumerosAleatorios gerador) {
+		this.gerador = gerador;
+	}
 	
 }
