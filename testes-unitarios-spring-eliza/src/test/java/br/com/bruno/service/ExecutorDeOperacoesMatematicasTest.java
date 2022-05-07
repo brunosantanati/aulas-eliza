@@ -4,13 +4,14 @@ import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 @RunWith(SpringRunner.class)
 public class ExecutorDeOperacoesMatematicasTest {
@@ -30,7 +31,7 @@ public class ExecutorDeOperacoesMatematicasTest {
 
 		double resultadoEsperado = 10.0;
 		
-		Assert.assertEquals(resultadoEsperado, resultadoDaSoma, 0.01);
+		assertEquals(resultadoEsperado, resultadoDaSoma, 0.01);
 		verify(gerador, times(2)).gerarNumero(anyDouble(), anyDouble());
 	}
 	
@@ -42,6 +43,20 @@ public class ExecutorDeOperacoesMatematicasTest {
 		executor.setGerador(gerador);
 		
 		executor.somarNumerosAleatorios(1001.0, 1050.0);
+	}
+	
+	@Test
+	public void deveriaLancarIllegalArgumentExceptionQuandoMinEMaxSaoMaioresQueMil() {
+		
+		GeradorDeNumerosAleatorios gerador = new GeradorDeNumerosAleatorios();
+		ExecutorDeOperacoesMatematicas executor = new ExecutorDeOperacoesMatematicas();
+		executor.setGerador(gerador);
+		
+		IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+			executor.somarNumerosAleatorios(1001.0, 1050.0);
+		});
+		
+		assertEquals("Numero nao pode ser maior que 1000", e.getMessage());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -56,7 +71,7 @@ public class ExecutorDeOperacoesMatematicasTest {
 	
 	public void deveriaDividirCorretamente() {
 		int resultadoDaDivisao = executor.dividir(10, 5);
-		Assert.assertEquals(2, resultadoDaDivisao);
+		assertEquals(2, resultadoDaDivisao);
 	}
 	
 	@Test(expected=ArithmeticException.class)
