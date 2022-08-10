@@ -1,28 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Produtos</title>
     <style>
-			span {
-				color: red;
-			}
-			div {
-				font-size: 20px;
-			}
-			h1 {
-				color: purple;
-				font-size: 25px;
-			}
-			.amarelo {
-				color: yellow;
-			}
-			.verde {
-				color: green;
-			}
-			.azul {
-				color: blue;
-			}
-
-			.header {
+        	.header {
               overflow: hidden;
               background-color: #f1f1f1;
               padding: 20px 10px;
@@ -82,14 +64,6 @@
         </div>
     </div>
 
-    Olá <span th:text="${nome}">João</span>!
-    <div th:text="${nome}">João</div>
-    <h1 th:text="${nome}">João</h1>
-
-    <th:block th:switch="${status}">
-        <div th:case="'AGUARDANDO'" class="amarelo">Nome do Produto</div>
-        <div th:case="'APROVADO'" class="verde">Nome do Produto</div>
-        <div th:case="'ENTREGUE'" class="azul">Nome do Produto</div>
-    </th:block>
+    lista de produtos: video-game, mesa, sofa
 </body>
 </html>

@@ -14,4 +14,9 @@ public class MyController {
         return "hello";
     }
 
+    @GetMapping("/produtos")
+    public String produtos(Model model) {
+        return "produtos";
+    }
+
 }
