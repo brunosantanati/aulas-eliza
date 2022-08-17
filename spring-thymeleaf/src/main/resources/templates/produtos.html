@@ -8,6 +8,17 @@
 <body>
     <div th:replace="~{fragmentos :: head}"></div>
 
-    lista de produtos: video-game, mesa, sofa
+    <div th:each="produto : ${listaDeProdutos}">
+        <div class="produto-container">
+            <div>Produto: <span th:text="${produto.nome}">NomeDoProduto</span></div>
+
+            <div>Valor: <span th:if="${produto.preco} != null" th:text="${'R$ ' + #numbers.formatDecimal(produto.preco, 3, 'POINT', 2, 'COMMA')}">200,99</span></div>
+
+            <div>
+                <img th:src="${produto.url}" />
+            </div>
+        </div>
+        <hr>
+    </div>
 </body>
 </html>

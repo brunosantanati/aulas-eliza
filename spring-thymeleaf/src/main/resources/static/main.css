@@ -18,6 +18,10 @@ h1 {
     color: blue;
 }
 
+.produto-container{
+    margin-bottom: 20px;
+}
+
 .header {
   overflow: hidden;
   background-color: #f1f1f1;
