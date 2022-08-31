@@ -70,3 +70,13 @@ h1 {
     float: none;
   }
 }
+
+.texto-block{
+    display: block;
+}
+
+.borda-preta{
+    border-style: solid;
+    border-color: #000000;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,39 @@
+<html>
+
+    <head>
+        <title>HTML Exemplos</title>
+        <link th:href="@{/main.css}" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div th:replace="~{fragmentos :: head}"></div>
+
+        <!-- https://www.w3schools.com/htmL/html_basic.asp -->
+        <h1>My First Heading</h1>
+        <p>My first paragraph.</p>
+        <p>This is another paragraph.</p>
+        <h6>My First Heading</h6>
+        <a href="https://www.w3schools.com" target="_blank">This is a link</a>
+        </br>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Rembrandt_Harmensz_van_Rijn_-_Return_of_the_Prodigal_Son_-_Google_Art_Project.jpg/300px-Rembrandt_Harmensz_van_Rijn_-_Return_of_the_Prodigal_Son_-_Google_Art_Project.jpg" alt="W3Schools.com" width="250" height="350">
+        </br>
+        texto1
+        </br>
+        texto2
+
+        <!-- https://www.w3schools.com/html/html_blocks.asp -->
+        <!-- https://www.w3schools.com/css/css_inline-block.asp -->
+        <p class="borda-preta">paragrafo eh block</p>
+        <div class="borda-preta">div tambem eh block</div>
+        <span class="borda-preta">Hello </span>
+        <span class="borda-preta">World</span>
+
+        <span class="texto-block borda-preta">Eliza</span>
+        <span style="display: block;" class="borda-preta">Uema</span>
+        <span class="borda-preta">Fukumoto</span>
+
+        <!-- para aprender fazer layout com CSS -->
+        <!-- https://learnlayout.com/ -->
+    </body>
+
+</html>

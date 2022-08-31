@@ -31,4 +31,9 @@ public class MyController {
         return "produtos";
     }
 
+    @GetMapping("/html-exemplos")
+    public String html(Model model) {
+        return "html-exemplos";
+    }
+
 }
