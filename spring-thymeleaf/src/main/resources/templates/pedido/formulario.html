@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link th:href="@{/main.css}" rel="stylesheet" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div th:replace="~{fragmentos :: head}"></div>
+
+		<div class="container">
+			<div class="card mt-3">
+				<form th:object="${requisicaoNovoPedido}" class="card-body" action="/pedido/novo" method="POST">
+					<div class="form-group">
+						<label for="nomeProduto">Produto</label>
+						<input th:field="*{nomeProduto}" class="form-control" placeholder="nome do produto"/>
+						<small>Informa qual o nome do produto.</small>
+					</div>
+					<div class="form-group">
+						<label for="urlProduto">Url</label>
+						<input th:field="*{urlProduto}" class="form-control" placeholder="url do produto"/>
+						<small>Procure em um site o produto que você deseja e cole a url da página aqui.</small>
+					</div>
+					<div class="form-group">
+						<label for="urlImagem">Imagem</label>
+						<input th:field="*{urlImagem}" class="form-control" placeholder="url da imagem"/>
+						<small>Copie a url de uma boa imagem do produto e cole aqui para ajudar a conseguir compradores.</small>
+					</div>
+					<div class="form-group">
+						<label for="descricao">Descrição</label>
+						<textarea th:field="*{descricao}" class="form-control" placeholder="Adicione detalhes importantes para ajudar o comprador."></textarea>
+					</div>
+					<button class="btn btn-primary" type="submit">Cadastrar</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

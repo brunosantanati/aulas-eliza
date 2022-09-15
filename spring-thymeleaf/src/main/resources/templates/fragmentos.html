@@ -4,5 +4,6 @@
         <a th:href="@{/hello}" th:classappend="${#request.getRequestURI() == '/hello' ? 'active' : ''}">Hello</a>
         <a th:href="@{/produtos}" th:classappend="${#request.getRequestURI() == '/produtos' ? 'active' : ''}">Produtos</a>
         <a th:href="@{/html-exemplos}" th:classappend="${#request.getRequestURI() == '/html-exemplos' ? 'active' : ''}">HTML</a>
+        <a th:href="@{/pedido/formulario}" th:classappend="${#request.getRequestURI() == '/pedido/formulario' ? 'active' : ''}">Formulario</a>
     </div>
 </div>
