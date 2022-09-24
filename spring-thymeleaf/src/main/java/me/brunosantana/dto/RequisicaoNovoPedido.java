@@ -4,10 +4,12 @@ import me.brunosantana.model.Pedido;
 import me.brunosantana.model.StatusPedido;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class RequisicaoNovoPedido {
 
 	@NotBlank //NotBlank.requisicaoNovoPedido.nomeProduto=não pode estar em branco
+	@Size(min = 3, max = 50)
 	private String nomeProduto;
 	
 	@NotBlank
