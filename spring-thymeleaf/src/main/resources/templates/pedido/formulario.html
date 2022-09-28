@@ -36,6 +36,14 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="urlImagem">Valor negociado</label>
+						<input th:field="*{valorNegociado}" th:errorClass="is-invalid" class="form-control" placeholder="url da imagem"/>
+						<small>Informe o valor</small>
+						<div class="invalid-feedback" th:errors="*{valorNegociado}">
+							Erros do valor negociado
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="descricao">Descrição</label>
 						<textarea th:field="*{descricao}" class="form-control" placeholder="Adicione detalhes importantes para ajudar o comprador."></textarea>
 					</div>

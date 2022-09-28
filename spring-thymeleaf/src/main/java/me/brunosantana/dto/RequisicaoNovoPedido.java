@@ -5,6 +5,7 @@ import me.brunosantana.model.StatusPedido;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 public class RequisicaoNovoPedido {
 
@@ -17,6 +18,9 @@ public class RequisicaoNovoPedido {
 	
 	@NotBlank
 	private String urlImagem;
+
+	private BigDecimal valorNegociado;
+
 	private String descricao;
 	
 	public String getNomeProduto() {
@@ -37,18 +41,22 @@ public class RequisicaoNovoPedido {
 	public void setUrlImagem(String urlImagem) {
 		this.urlImagem = urlImagem;
 	}
+	public BigDecimal getValorNegociado() { return valorNegociado; }
+	public void setValorNegociado(BigDecimal valorNegociado) { this.valorNegociado = valorNegociado; }
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public Pedido toPedido() {
 		Pedido pedido = new Pedido();
 		pedido.setDescricao(descricao);
 		pedido.setNomeProduto(nomeProduto);
 		pedido.setUrlImagem(urlImagem);
 		pedido.setUrlProduto(urlProduto);
+		pedido.setValorNegociado(valorNegociado);
 		pedido.setStatus(StatusPedido.AGUARDANDO);
 		return pedido;
 	}
@@ -59,6 +67,7 @@ public class RequisicaoNovoPedido {
 				"nomeProduto='" + nomeProduto + '\'' +
 				", urlProduto='" + urlProduto + '\'' +
 				", urlImagem='" + urlImagem + '\'' +
+				", valorNegociado=" + valorNegociado +
 				", descricao='" + descricao + '\'' +
 				'}';
 	}
