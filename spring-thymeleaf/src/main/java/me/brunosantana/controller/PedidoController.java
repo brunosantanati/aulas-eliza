@@ -2,6 +2,7 @@ package me.brunosantana.controller;
 
 import me.brunosantana.dto.RequisicaoNovoPedido;
 import me.brunosantana.model.Pedido;
+import me.brunosantana.repository.PedidoRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,13 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("pedido")
-public class PedidoController {
+public class PedidoController{
+
+	private PedidoRepository pedidoRepository;
+
+	public PedidoController(PedidoRepository pedidoRepository){
+		this.pedidoRepository = pedidoRepository;
+	}
 
 	@GetMapping("formulario") 
 	public String formulario(RequisicaoNovoPedido requisicao) {
@@ -24,11 +31,9 @@ public class PedidoController {
 		if(result.hasErrors()) {
 			return "pedido/formulario";
 		}
-
-		System.out.println(requisicao);
 		
 		Pedido pedido = requisicao.toPedido();
-		System.out.println(pedido);
+		pedidoRepository.save(pedido);
 		
 		return "redirect:/hello";
 	}
