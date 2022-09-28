@@ -6,6 +6,7 @@ import me.brunosantana.model.StatusPedido;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class RequisicaoNovoPedido {
 
@@ -58,6 +59,7 @@ public class RequisicaoNovoPedido {
 		pedido.setUrlProduto(urlProduto);
 		pedido.setValorNegociado(valorNegociado);
 		pedido.setStatus(StatusPedido.AGUARDANDO);
+		pedido.setDataDaEntrega(LocalDate.now().plusDays(7));
 		return pedido;
 	}
 
