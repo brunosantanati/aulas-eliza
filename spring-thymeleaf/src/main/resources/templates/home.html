@@ -1,0 +1,15 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/main.css}" rel="stylesheet" />
+</head>
+<body>
+    <div th:replace="~{fragmentos :: head}"></div>
+
+    <div th:each="pedido : ${pedidos}">
+
+        <div class="card-header alert-warning" th:text="${pedido.nomeProduto}">Nome do Produto</div>
+
+    </div>
+</body>
+</html>
