@@ -36,4 +36,9 @@ public class MyController {
         return "html-exemplos";
     }
 
+    @GetMapping("/bootstrap")
+    public String bootstrap(Model model) {
+        return "bootstrap-exemplo";
+    }
+
 }
