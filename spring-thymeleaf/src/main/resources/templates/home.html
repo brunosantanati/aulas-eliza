@@ -42,6 +42,9 @@
                         <div>
                             <textarea class="form-control" th:text="${pedido.descricao}">descrição do pedido</textarea>
                         </div>
+                        <div>
+                            <a th:href="@{'/pedido/' + ${pedido.id}}">Apagar</a>
+                        </div>
                     </div>
                     <div class="col-12 col-sm-4">
                         <div>

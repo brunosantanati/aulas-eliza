@@ -5,9 +5,7 @@ import me.brunosantana.model.Pedido;
 import me.brunosantana.repository.PedidoRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -36,6 +34,12 @@ public class PedidoController{
 		pedidoRepository.save(pedido);
 		
 		return "redirect:/hello";
+	}
+
+	@GetMapping("/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		pedidoRepository.deleteById(id);
+		return "redirect:/home";
 	}
 	
 }
