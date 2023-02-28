@@ -8,9 +8,9 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class RequisicaoNovoPedido {
+public class PedidoDto {
 
-	@NotBlank //NotBlank.requisicaoNovoPedido.nomeProduto=não pode estar em branco
+	@NotBlank //NotBlank.pedidoDto.nomeProduto=não pode estar em branco
 	@Size(min = 3, max = 50)
 	private String nomeProduto;
 	
@@ -65,7 +65,7 @@ public class RequisicaoNovoPedido {
 
 	@Override
 	public String toString() {
-		return "RequisicaoNovoPedido{" +
+		return "PedidoDto{" +
 				"nomeProduto='" + nomeProduto + '\'' +
 				", urlProduto='" + urlProduto + '\'' +
 				", urlImagem='" + urlImagem + '\'' +

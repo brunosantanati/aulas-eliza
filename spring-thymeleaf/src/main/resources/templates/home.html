@@ -16,7 +16,7 @@
                 <a th:classappend="${status} == 'aprovado' ? 'active'" class="nav-item nav-link" href="/home/aprovado">Aprovado</a>
                 <a th:classappend="${status} == 'entregue' ? 'active'" class="nav-item nav-link" href="/home/entregue">Entregue</a>
             </div>
-            <a href="/pedido/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>
+            <a href="/pedido/novo"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>
         </nav>
 
         <div class="card mb-3" th:each="pedido : ${pedidos}">
@@ -43,7 +43,8 @@
                             <textarea class="form-control" th:text="${pedido.descricao}">descrição do pedido</textarea>
                         </div>
                         <div>
-                            <a th:href="@{'/pedido/' + ${pedido.id}}">Apagar</a>
+                            <a th:href="@{'/pedido/' + ${pedido.id}}" style="margin-right:10px">Apagar</a>
+                            <a th:href="@{'/pedido/editar/' + ${pedido.id}}">Editar</a>
                         </div>
                     </div>
                     <div class="col-12 col-sm-4">

@@ -1,5 +1,7 @@
 package me.brunosantana.model;
 
+import me.brunosantana.dto.PedidoDto;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -96,5 +98,23 @@ public class Pedido {
 				", descricao='" + descricao + '\'' +
 				", status=" + status +
 				'}';
+	}
+
+	public PedidoDto toDto() {
+		PedidoDto pedidoDto = new PedidoDto();
+		pedidoDto.setDescricao(this.getDescricao());
+		pedidoDto.setNomeProduto(this.getNomeProduto());
+		pedidoDto.setUrlImagem(this.getUrlImagem());
+		pedidoDto.setUrlProduto(this.getUrlProduto());
+		pedidoDto.setValorNegociado(this.getValorNegociado());
+		return pedidoDto;
+	}
+
+	public void setarDadosDo(PedidoDto pedidoDto) {
+		this.setDescricao(pedidoDto.getDescricao());
+		this.setNomeProduto(pedidoDto.getNomeProduto());
+		this.setUrlImagem(pedidoDto.getUrlImagem());
+		this.setUrlProduto(pedidoDto.getUrlProduto());
+		this.setValorNegociado(pedidoDto.getValorNegociado());
 	}
 }
