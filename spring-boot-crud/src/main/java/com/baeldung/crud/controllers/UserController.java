@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.baeldung.crud.entities.User;
 import com.baeldung.crud.repositories.UserRepository;
 
+//Exemplo copiado do site do Baeldung:
+//https://www.baeldung.com/spring-boot-crud-thymeleaf
+//https://github.com/eugenp/tutorials/tree/master/spring-boot-modules/spring-boot-crud
+
 @Controller
 public class UserController {
     
