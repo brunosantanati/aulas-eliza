@@ -19,21 +19,21 @@ public class PedidoController{
 		this.pedidoRepository = pedidoRepository;
 	}
 
-	@GetMapping("formulario") 
-	public String formulario(RequisicaoNovoPedido requisicao) {
-		return "pedido/formulario";
+	@GetMapping("novo")
+	public String novoPedido(RequisicaoNovoPedido requisicao) {
+		return "pedido/novo";
 	}
 	
 	@PostMapping("novo")
 	public String novo(@Valid RequisicaoNovoPedido requisicao, BindingResult result) {
 		if(result.hasErrors()) {
-			return "pedido/formulario";
+			return "pedido/novo";
 		}
 		
 		Pedido pedido = requisicao.toPedido();
 		pedidoRepository.save(pedido);
 		
-		return "redirect:/hello";
+		return "redirect:/home";
 	}
 
 	@GetMapping("/{id}")
