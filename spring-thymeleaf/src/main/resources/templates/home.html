@@ -43,7 +43,7 @@
                             <textarea class="form-control" th:text="${pedido.descricao}">descrição do pedido</textarea>
                         </div>
                         <div>
-                            <a th:href="@{'/pedido/' + ${pedido.id}}" style="margin-right:10px">Apagar</a>
+                            <a th:href="@{'/pedido/' + ${pedido.id}}" style="margin-right:10px" onclick="return confirm('Tem certeza que deseja apagar?')">Apagar</a>
                             <a th:href="@{'/pedido/editar/' + ${pedido.id}}">Editar</a>
                         </div>
                     </div>
