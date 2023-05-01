@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "c3542e3c-23b6-4120-84fc-40ffc57fa003",
+		"name": "microservicos-alurafood",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2372342"
+	},
+	"item": [
+		{
+			"name": "Listar pagamentos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pagamentos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pagamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar pagamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"valor\": 50,\n    \"nome\": \"Bruno\",\n    \"numero\": \"123456789\",\n    \"expiracao\": \"10/30\",\n    \"codigo\": \"123\",\n    \"formaDePagamentoId\": 1,\n    \"pedidoId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pagamentos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pagamentos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
