@@ -18,7 +18,7 @@ docker ps
 Baixa a imagem com MySQL:
 docker pull mysql
 
-Sobe um container baseado na imagem do MySQL:
+Sobe um container baseado na imagem do MySQL (pode-se usar -e MYSQL_ROOT_HOST:"%" para liberar o acesso de qualquer ip):
 docker run -d \
   --name my-mysql-container \
   -e MYSQL_ROOT_PASSWORD=root \
