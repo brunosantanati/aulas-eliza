@@ -38,4 +38,7 @@ Acessar o MySQL do container a partir da máquina host:
 mysql -h 172.17.0.2 -u root -p
 OU
 mysql -h 172.17.0.2 -P 3306 --protocol=tcp -u root -p
+
+Pegar o IP de uma virtual machine onde o Docker está instalado (diferente da máquina host):
+docker-machine ip
 ```
