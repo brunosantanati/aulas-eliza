@@ -31,6 +31,8 @@ docker exec -it my-mysql-container bash
   
 Para pegar o IP do container:
 docker inspect my-mysql-container | grep IPAddress
+OU
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-mysql-container
 
 Acessar o MySQL do container:
 mysql -h 172.17.0.2 -u root -p
