@@ -34,6 +34,8 @@ docker inspect my-mysql-container | grep IPAddress
 OU
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-mysql-container
 
-Acessar o MySQL do container:
+Acessar o MySQL do container a partir da máquina host:
 mysql -h 172.17.0.2 -u root -p
+OU
+mysql -h 172.17.0.2 -P 3306 --protocol=tcp -u root -p
 ```
