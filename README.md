@@ -26,6 +26,9 @@ docker run -d \
   -v /home/bruno/mysql/mysqlData:/var/lib/mysql \
   mysql
   
+Variação do comando acima:
+docker run -d --name my-mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_HOST='%' -p 32768:3306 -v C:\Users\eliza\mysqldata:/var/lib/mysql mysql:latest
+  
 Provê um bash no container:
 docker exec -it my-mysql-container bash
   
